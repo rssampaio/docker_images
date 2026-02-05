@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_fullcycle
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fullcycle
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - fullcycle_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  app:
+    build: .
+    container_name: app_fullcycle
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - fullcycle_network
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_fullcycle
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      - fullcycle_network
+    restart: always
+
+volumes:
+  mysql_data:
+
+networks:
+  fullcycle_network:
+    driver: bridge

@@ -1,0 +1,16 @@
+{
+  "name": "fullcycle",
+  "version": "1.0.0",
+  "description": "Full Cycle challenge with Nginx, Node.js and MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}

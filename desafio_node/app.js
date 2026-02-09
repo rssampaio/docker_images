@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  const name = req.query.name || 'Full Cycle User';
+  const name = req.query.name || 'Full Cycle Usuario';
   
   // Insert name into database
   const query = `INSERT INTO people(name) VALUES ('${name}')`;
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`${name} inserted successfully!`);
+      console.log(`${name} Inserido com sucesso!`);
     }
   });
   
@@ -29,10 +29,10 @@ app.get('/', (req, res) => {
   connection.query('SELECT name FROM people', (error, results) => {
     if (error) {
       console.log(error);
-      res.send('<h1>Full Cycle Rocks!</h1><p>Error fetching names</p>');
+      res.send('<h1>Full Cycle !</h1><p>Erro ao buscar nomes</p>');
     } else {
-      let namesList = '<h1>Full Cycle Rocks!</h1>';
-      namesList += '<h2>Registered Names:</h2>';
+      let namesList = '<h1>Full Cycle!</h1>';
+      namesList += '<h2>Nomes gravados:</h2>';
       namesList += '<ul>';
       
       results.forEach(row => {
@@ -46,5 +46,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('App running on port 3000');
+  console.log('App rodando na porta 3000');
 });

@@ -1,7 +1,7 @@
 {
   "name": "fullcycle",
   "version": "1.0.0",
-  "description": "Full Cycle challenge with Nginx, Node.js and MySQL",
+  "description": "Full Cycle Nginx com Node.js e MySQL",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

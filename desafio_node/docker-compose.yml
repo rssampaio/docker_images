@@ -24,6 +24,8 @@ services:
     networks:
       - fullcycle_network
     restart: always
+    volumes:
+      - .:/usr/src/app
 
   nginx:
     image: nginx:latest
